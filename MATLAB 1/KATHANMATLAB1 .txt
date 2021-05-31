@@ -1,0 +1,345 @@
+>> format compact
+>> % Kathan Patel
+>> % 6019
+>> % Section C2
+>> % Math 250 MATLAB Lab Assignment #1
+>> rand('seed',6019)
+>> % Question 1(a)
+>> R = rand(2,3)
+R =
+    0.1989    0.0298    0.2660
+    0.6517    0.0803    0.8867
+>> R = rand(2,3)
+R =
+    0.0128    0.5333    0.5531
+    0.9917    0.4092    0.1149
+>> R = rand(2,3)
+R =
+    0.2905    0.8582    0.6840
+    0.6520    0.4280    0.6475
+>> % Question 1(b)
+>> A = [1 2; 3 4; 5 6]
+A =
+     1     2
+     3     4
+     5     6
+>> B = [1 2 3;4 5 6;7 8 9]
+B =
+     1     2     3
+     4     5     6
+     7     8     9
+>> x = [4 3 2]
+x =
+     4     3     2
+>> X = [1;2;3]
+X =
+     1
+     2
+     3
+>> B
+B =
+     1     2     3
+     4     5     6
+     7     8     9
+>> x
+x =
+     4     3     2
+>> X
+X =
+     1
+     2
+     3
+>> whos
+  Name      Size            Bytes  Class     Attributes
+
+  A         3x2                48  double              
+  B         3x3                72  double              
+  R         2x3                48  double              
+  X         3x1                24  double              
+  x         1x3                24  double              
+
+>> % Question 1(c)
+>> [size(A); size(B); size(X); size(x)]
+ans =
+     3     2
+     3     3
+     3     1
+     1     3
+>> S = ans
+S =
+     3     2
+     3     3
+     3     1
+     1     3
+>> % Question 1(d)
+>> a32 = A(3,2)
+a32 =
+     6
+>> A(3,2) = 7
+A =
+     1     2
+     3     4
+     5     7
+>> A(3,2) = 6
+A =
+     1     2
+     3     4
+     5     6
+>> % Question 1(e)
+>> C(:,1) = B(:,1); C(:,2)=B(:,3)
+C =
+     1     3
+     4     6
+     7     9
+>> D(1,:)=B(1,:);D(:,2)=B(3,:)
+Unable to perform assignment because the size of the left side
+is 1-by-1 and the size of the right side is 1-by-3. 
+>> D(1,:)=B(1,:);D(2,:)=B(3,:)
+D =
+     1     2     3
+     7     8     9
+>> C,D
+C =
+     1     3
+     4     6
+     7     9
+D =
+     1     2     3
+     7     8     9
+>> % Question 2(a)
+>> % [A X] fit together as both  matrices have 3 rows. The same is true for [B C]. [C D] do not fit together because matrix C
+>> % and matrix D do not have the same number of rows. [C;B] do not fit together because matrix C and matrix B
+>> % do not have the same number of columns. [B;D] fit together because matrix B and matrix D do have the same number of columns.
+>> [A X]
+ans =
+     1     2     1
+     3     4     2
+     5     6     3
+>> [B C]
+ans =
+     1     2     3     1     3
+     4     5     6     4     6
+     7     8     9     7     9
+>> [C D]
+Error using horzcat
+Dimensions of arrays being concatenated are not consistent. 
+>> [C;B]
+Error using vertcat
+Dimensions of arrays being concatenated are not consistent. 
+>> [B;D]
+ans =
+     1     2     3
+     4     5     6
+     7     8     9
+     1     2     3
+     7     8     9
+>> % Question 2(b)
+>> eye(4)
+ans =
+     1     0     0     0
+     0     1     0     0
+     0     0     1     0
+     0     0     0     1
+>> zeros(3)
+ans =
+     0     0     0
+     0     0     0
+     0     0     0
+>> zeros(3,5)
+ans =
+     0     0     0     0     0
+     0     0     0     0     0
+     0     0     0     0     0
+>> ones(2,3)
+ans =
+     1     1     1
+     1     1     1
+>> diag([4 5 6 7])
+ans =
+     4     0     0     0
+     0     5     0     0
+     0     0     6     0
+     0     0     0     7
+>> % Question 3
+>> format short
+>> format compact
+>> u = fix(10*rand(3,1)), v = fix(10*rand(3,1)), A = fix(10*rand(2,3)), B = fix(10*rand(2,3))
+u =
+     5
+     1
+     7
+v =
+     2
+     8
+     3
+A =
+     4     6     8
+     4     1     0
+B =
+     6     6     7
+     1     2     4
+>> % Question 3(a)
+>> A + B, B+A,6*B,2*(3*B),6*A+15*B,3*(2*A+5*B), (3*A')'
+ans =
+    10    12    15
+     5     3     4
+ans =
+    10    12    15
+     5     3     4
+ans =
+    36    36    42
+     6    12    24
+ans =
+    36    36    42
+     6    12    24
+ans =
+   114   126   153
+    39    36    60
+ans =
+   114   126   153
+    39    36    60
+ans =
+    12    18    24
+    12     3     0
+>> % Properties if matrix addition and scalar multiplication
+>> % Let A, B and C be mxn matrices and let s and t be any scalars.
+>> % A+B=B+A
+>> %(st)A=s(tA)
+>> % (sA)'=s(A)'
+>> % (A')'=A
+>> % Question 3(b)
+>> A*u+A*v, A*(u+v), (A+B)*u, A*u+B*u, A*(3*u), 3*A*(u)
+ans =
+   162
+    37
+ans =
+   162
+    37
+ans =
+   167
+    56
+ans =
+   167
+    56
+ans =
+   246
+    63
+ans =
+   246
+    63
+>> % Properties of matrix vector products
+>> % Let A and B be mxn matrices, and let u and v be vectors in R^n.
+>> % A*(u+v)=
+>> % A*(u+v)= A*u+A*v
+>> % (A+B)*u= A*u+B*u
+>> % A*(c*u) = c*(A*u) for scalar c
+>> % Question 4(a)
+>> A=fix(10*rand(3,4))
+A =
+     5     6     3     4
+     8     3     6     7
+     4     2     3     4
+>> R=A;R(1,:)=R(1,:)/R(1,1)
+R =
+    1.0000    1.2000    0.6000    0.8000
+    8.0000    3.0000    6.0000    7.0000
+    4.0000    2.0000    3.0000    4.0000
+>> R(2,:)=R(2,:)-R(2,1)*R(1,:)
+R =
+    1.0000    1.2000    0.6000    0.8000
+         0   -6.6000    1.2000    0.6000
+    4.0000    2.0000    3.0000    4.0000
+>> R(3,:)=R(3,:)-R(3,1)*R(1,:)
+R =
+    1.0000    1.2000    0.6000    0.8000
+         0   -6.6000    1.2000    0.6000
+         0   -2.8000    0.6000    0.8000
+>> % Question 4(b)
+>> R(2,:)=R(2,:)/R(2,2)
+R =
+    1.0000    1.2000    0.6000    0.8000
+         0    1.0000   -0.1818   -0.0909
+         0   -2.8000    0.6000    0.8000
+>> R(1,:)=R(1,:)-R(1,2)*R(2,:)
+R =
+    1.0000         0    0.8182    0.9091
+         0    1.0000   -0.1818   -0.0909
+         0   -2.8000    0.6000    0.8000
+>> R(3,:)=R(3,:)-R(3,2)*R(2,:)
+R =
+    1.0000         0    0.8182    0.9091
+         0    1.0000   -0.1818   -0.0909
+         0         0    0.0909    0.5455
+>> % Question 4(c)
+>> R(3,:)=R(3,:)/R(3,3)
+R =
+    1.0000         0    0.8182    0.9091
+         0    1.0000   -0.1818   -0.0909
+         0         0    1.0000    6.0000
+>> R(1,:)=R(1,:)-R(1,3)*R(3,:)
+R =
+    1.0000         0         0   -4.0000
+         0    1.0000   -0.1818   -0.0909
+         0         0    1.0000    6.0000
+>> R(2,:)=R(2,:)-R(2,3)*R(3,:)
+R =
+    1.0000         0         0   -4.0000
+         0    1.0000         0    1.0000
+         0         0    1.0000    6.0000
+>> % Question 4(d)
+>> rref(A)
+ans =
+     1     0     0    -4
+     0     1     0     1
+     0     0     1     6
+>> % Question 5(a)
+>> a=[.1;.2;.3]; m=[.2;.4;.1]; s=[.1;.2;.1]; C=[a,m,s]
+C =
+    0.1000    0.2000    0.1000
+    0.2000    0.4000    0.2000
+    0.3000    0.1000    0.1000
+>> % Question 5(b)
+>> a=[.1;.15;.3];m=[.2;.25;.1];s=[.2;.35;.1];C=[a,m,s]
+C =
+    0.1000    0.2000    0.2000
+    0.1500    0.2500    0.3500
+    0.3000    0.1000    0.1000
+>> x=[40;50;30]
+x =
+    40
+    50
+    30
+>> % The net production vector is given by x-Cx
+>> x-C*x
+ans =
+    20
+    21
+    10
+>> % 20 million of agriculture, 21 million of manufacturing, 10 million of services.
+>> % Question 5(c)
+>> d=[90;72;96]
+d =
+    90
+    72
+    96
+>> % Question 5(c)(i)
+>> % The gross production vector x necessary to satisfy exactly a demand d is a solution of (In-C)*x=d
+>> % Question 5(c)(ii)
+>> [1 0 0; 0 1 0; 1 0 0] - C
+ans =
+    0.9000   -0.2000   -0.2000
+   -0.1500    0.7500   -0.3500
+    0.7000   -0.1000   -0.1000
+>> augmented = [ans,d]
+augmented =
+    0.9000   -0.2000   -0.2000   90.0000
+   -0.1500    0.7500   -0.3500   72.0000
+    0.7000   -0.1000   -0.1000   96.0000
+>> rref(augmented)
+ans =
+    1.0000         0         0  204.0000
+         0    1.0000         0  242.1818
+         0         0    1.0000  225.8182
+>> % 204 million of agriculture
+>> % 242.1818 million in manufacturing
+>> % 225.8182 million of services.
